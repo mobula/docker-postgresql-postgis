@@ -2,5 +2,5 @@ Dockerfiles
 -----------
 
 ```
-docker build -t dokku/postgresql github.com/mobula/dokku-pg-dockerfiles
+docker build -t mobula/postgresql github.com/mobula/dokku-pg-dockerfiles
 ```
