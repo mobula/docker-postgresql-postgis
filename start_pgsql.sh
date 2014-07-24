@@ -9,3 +9,7 @@ if [[ ! -f /opt/postgresql/initialized ]]; then
     touch /opt/postgresql/initialized
 fi
 su postgres sh -c "/usr/lib/postgresql/9.3/bin/postgres           -D  /var/lib/postgresql/9.3/main  -c config_file=/etc/postgresql/9.3/main/postgresql.conf  -c listen_addresses=*"
+
+# for postgis need to add
+# CREATE EXTENSION postgis
+
