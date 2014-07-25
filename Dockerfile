@@ -13,7 +13,7 @@ RUN apt-get update
 RUN locale-gen --no-purge $PG_LANG
 ENV LC_ALL $PG_LANG
 RUN update-locale LANG=$PG_LANG
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install postgresql-9.3-postgis-2.1
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y -q install postgresql-9.3-postgis-2.1
 
 # Note: The official Debian and Ubuntu images automatically ``apt-get clean``
 # after each ``apt-get``
