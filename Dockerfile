@@ -2,7 +2,7 @@
 # forked from https://github.com/docker-library/postgres/9.3/Dockerfile
 # forked from https://github.com/orchardup/docker-postgresql
 FROM ubuntu:14.04
-MAINTAINER Ben Firshman "ben@orchardup.com"
+MAINTAINER n__o "mobula.diabolus@gmail.com"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r postgres && useradd -r -g postgres postgres
