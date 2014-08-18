@@ -4,7 +4,7 @@ docker-postgresql-postgis
 A [Docker](http://www.docker.com) configuration for **postgresql** with **postgis** support.
 
 Based on Docker [official Postgres image](https://registry.hub.docker.com/_/postgres/) with the following differences:
-- [x| using _Ubuntu 14.04 trusty_ instead of _Debian Wheezy_ as base image,
+- [x] using _Ubuntu 14.04 trusty_ instead of _Debian Wheezy_ as base image,
 - [x] adding **postgis-2.1**
 
 **Note:** As with the [official Postgres image](https://registry.hub.docker.com/_/postgres/) you cannot configure its database name, username and password, but it does set up a user called `postgres` (no password) and a database called `postgres` which you can use instead.
@@ -37,7 +37,3 @@ Environment variables
  - PGIS_MAJOR 2.1
  - PGDATA /var/lib/postgres/data
 
-
-```
-docker build -t mobula/postgresql github.com/mobula/dokku-pg-dockerfiles
-```
