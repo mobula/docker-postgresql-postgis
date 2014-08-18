@@ -24,12 +24,12 @@ How to use this image
 #### start a postgres instance
 
 ```
-docker run --name some-postgres -d postgres
+docker run --name some-postgres -d mobula/postgresql
 ```
 
-This image includes EXPOSE 5432 (the postgres port), so standard container linking will make it automatically available to the linked containers. The default postgres user and database are created in the entrypoint with initdb.
+This image includes `EXPOSE 5432` (the postgres port), so standard container linking will make it automatically available to the linked containers. The default postgres user and database are created in the entrypoint with initdb.
 
-The postgres database is a default database meant for use by users, utilities and third party applications. [postgresql.org/docs](http://www.postgresql.org/docs/9.3/interactive/app-initdb.html)
+The `postgres` database is a default database meant for use by users, utilities and third party applications. [postgresql.org/docs](http://www.postgresql.org/docs/9.3/interactive/app-initdb.html)
 
 #### connect to it from an application
 ```
