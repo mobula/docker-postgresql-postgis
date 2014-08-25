@@ -22,8 +22,7 @@ ENV LANG en_US.utf8
 RUN apt-key adv --keyserver pgp.mit.edu --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
 
 ENV PG_MAJOR 9.3
-ENV PG_VERSION 9.3
-#ENV PG_VERSION 9.3.5-1.pgdg70+1
+#ENV PG_VERSION 9.3.5-1.pgdg70+1  => Debian style PG_VERSION - not used on ubuntu
 ENV PGIS_MAJOR 2.1
 
 #RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
@@ -34,8 +33,8 @@ RUN apt-get update \
 	&& apt-get install -y postgresql-common \
 	&& sed -ri 's/#(create_main_cluster) .*$/\1 = false/' /etc/postgresql-common/createcluster.conf \
 	&& apt-get install -y \
-		postgresql-$PG_MAJOR=$PG_VERSION \
-		postgresql-contrib-$PG_MAJOR=$PG_VERSION \
+		postgresql-$PG_MAJOR \
+		postgresql-contrib-$PG_MAJOR \
 		postgresql-$PG_MAJOR-postgis-$PGIS_MAJOR \
 	&& rm -rf /var/lib/apt/lists/*
 
