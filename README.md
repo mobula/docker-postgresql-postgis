@@ -7,7 +7,7 @@ Based on Docker [official Postgres image](https://registry.hub.docker.com/_/post
 - [x] adding **postgis-2.1**
 - [ ] using _Ubuntu 14.04 trusty_ instead of _Debian Wheezy_ as base image,
 
-**Note:** As for the [official Postgres image](https://registry.hub.docker.com/_/postgres/), the installation script creates a default database (`postgres`) with user `postgres` (no password). We may still create an application specific user and database.
+**Note:** As for the [official Postgres image](https://registry.hub.docker.com/_/postgres/), the installation script creates a default database (`postgres`) with user `postgres` (no password). It may still be possible to create an application specific user and database.
 
 
 Installation
@@ -33,10 +33,25 @@ The `postgres` database is a default database meant for use by users, utilities 
 ```
 docker run --name some-app --link some-postgres:postgres -d application-that-uses-postgres
 ```
+
 #### … or via `psql`
 ```
 docker run -it --link some-postgres:postgres --rm mobula/postgresql sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 ```
+
+#### open a shell
+```
+docker run -it --rm --link pg_edncodev:db --volumes-from=pg_edncodev --entrypoint=/bin/bash mobula/postgresql -s
+```
+
+> **IMPORTANT: ** The `Dockerfile` uses an `ENTRYPOINT` instead of `CMD`.
+
+#### retrieve environment variables
+```
+docker run --rm --link some_postgres:db busybox env
+```
+
+
 
 Environment variables
 ---------------------
@@ -50,19 +65,18 @@ PG_VERSION=9.3.5-1.pgdg70+1
 PG_MAJOR=9.3
 PGDATA=/var/lib/postgresql/data
 
-POSTGRES_NAME=/naughty_morse/postgres
-POSTGRES_PORT=tcp://172.17.0.4:5432
-POSTGRES_PORT_5432_TCP_PROTO=tcp
-POSTGRES_PORT_5432_TCP_ADDR=172.17.0.4
-POSTGRES_PORT_5432_TCP_PORT=5432
-POSTGRES_PORT_5432_TCP=tcp://172.17.0.4:5432
+DB_NAME=/naughty_morse/postgres
+DB_PORT=tcp://172.17.0.4:5432
+DB_PORT_5432_TCP_PROTO=tcp
+DB_PORT_5432_TCP_ADDR=172.17.0.4
+DB_PORT_5432_TCP_PORT=5432
+DB_PORT_5432_TCP=tcp://172.17.0.4:5432
 
-POSTGRES_ENV_LANG=en_US.utf8
-POSTGRES_ENV_PG_MAJOR=9.3
-POSTGRES_ENV_PG_VERSION=9.3.5-1.pgdg70+1
-POSTGRES_ENV_PGDATA=/var/lib/postgresql/data
+DB_ENV_LANG=en_US.utf8
+DB_ENV_PG_MAJOR=9.3
+DB_ENV_PG_VERSION=9.3.5-1.pgdg70+1
+DB_ENV_PGDATA=/var/lib/postgresql/data
 ```
-
 
 Enabling postGIS
 ----------------

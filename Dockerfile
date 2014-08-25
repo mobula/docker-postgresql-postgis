@@ -1,7 +1,9 @@
 # vim:set ft=dockerfile:
 # forked from https://github.com/docker-library/postgres/9.3/Dockerfile
 # forked from https://github.com/orchardup/docker-postgresql
-FROM debian:wheezy
+# See also: https://docs.docker.com/examples/postgresql_service/
+#FROM debian:wheezy
+FROM ubuntu:trusty
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r postgres && useradd -r -g postgres postgres
@@ -23,7 +25,9 @@ ENV PG_MAJOR 9.3
 ENV PG_VERSION 9.3.5-1.pgdg70+1
 ENV PGIS_MAJOR 2.1
 
-RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
+#RUN echo 'deb http://apt.postgresql.org/pub/repos/apt/ wheezy-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" $PG_MAJOR > /etc/apt/sources.list.d/pgdg.list
+
 
 RUN apt-get update \
 	&& apt-get install -y postgresql-common \
